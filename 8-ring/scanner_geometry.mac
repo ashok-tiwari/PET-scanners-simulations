@@ -1,0 +1,162 @@
+################ Discovery-MI 8-ring scanner geometry ##########################
+# August, 28, 2020
+
+# CYLINDRICAL PET
+/gate/world/daughters/name                    cylindricalPET
+/gate/world/daughters/insert                  cylinder
+/gate/cylindricalPET/setMaterial              Air
+/gate/cylindricalPET/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/cylindricalPET/geometry/setRmax         380. mm
+/gate/cylindricalPET/geometry/setRmin         350. mm
+/gate/cylindricalPET/geometry/setHeight       400. mm    #### 8 ring system ###
+/gate/cylindricalPET/vis/setVisible           1
+/gate/cylindricalPET/vis/forceWireframe
+
+# ROTATIONAL SECTOR 
+/gate/cylindricalPET/daughters/name        my_rsector
+/gate/cylindricalPET/daughters/insert      box
+/gate/my_rsector/placement/setTranslation  368.0 0.0 0.0 mm
+/gate/my_rsector/geometry/setXLength       25.0 mm
+/gate/my_rsector/geometry/setYLength       64.5 mm
+/gate/my_rsector/geometry/setZLength       400.0 mm
+/gate/my_rsector/setMaterial               Air
+/gate/my_rsector/vis/forceSolid
+/gate/my_rsector/vis/setVisible            1
+/gate/my_rsector/vis/setColor              magenta
+
+# REPEAT  RSECTOR
+/gate/my_rsector/repeaters/insert          ring
+/gate/my_rsector/ring/setRepeatNumber      34
+
+# MODULE
+/gate/my_rsector/daughters/name          my_module
+/gate/my_rsector/daughters/insert        box
+/gate/my_module/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/my_module/geometry/setXLength      25.0 mm
+/gate/my_module/geometry/setYLength      64.5 mm
+/gate/my_module/geometry/setZLength      47.84 mm
+/gate/my_module/setMaterial              Air
+/gate/my_module/vis/forceSolid
+/gate/my_module/vis/setColor             gray
+
+# REPEAT  MODULE
+/gate/my_module/repeaters/insert              cubicArray
+/gate/my_module/cubicArray/setRepeatNumberX   1
+/gate/my_module/cubicArray/setRepeatNumberY   1
+/gate/my_module/cubicArray/setRepeatNumberZ   8    ######### 8 ring system ####
+/gate/my_module/cubicArray/setRepeatVector    0. 0. 50.64 mm
+
+# SUBMODULE
+/gate/my_module/daughters/name              my_submodule
+/gate/my_module/daughters/insert            box
+/gate/my_submodule/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/my_submodule/geometry/setXLength      25.0 mm
+/gate/my_submodule/geometry/setYLength      15.9 mm
+/gate/my_submodule/geometry/setZLength      47.84 mm
+/gate/my_submodule/setMaterial              Air
+/gate/my_submodule/vis/setVisible           1
+/gate/my_submodule/vis/forceSolid
+/gate/my_submodule/vis/setColor             blue
+
+# REPEAT  CRYSTAL
+/gate/my_submodule/repeaters/insert             cubicArray
+/gate/my_submodule/cubicArray/setRepeatNumberX  1
+/gate/my_submodule/cubicArray/setRepeatNumberY  4
+/gate/my_submodule/cubicArray/setRepeatNumberZ  1
+/gate/my_submodule/cubicArray/setRepeatVector   0.0 16.125 0.0 mm
+
+# CRYSTAL
+/gate/my_submodule/daughters/name        my_crystal
+/gate/my_submodule/daughters/insert       box
+/gate/my_crystal/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/my_crystal/geometry/setXLength      25.0 mm
+/gate/my_crystal/geometry/setYLength      3.95 mm
+/gate/my_crystal/geometry/setZLength      5.30 mm
+/gate/my_crystal/setMaterial              Air
+/gate/my_crystal/vis/setVisible           0
+/gate/my_crystal/vis/forceSolid
+/gate/my_crystal/vis/setColor             gray
+
+# REPEAT  CRYSTAL house
+/gate/my_crystal/repeaters/insert             cubicArray
+/gate/my_crystal/cubicArray/setRepeatNumberX  1
+/gate/my_crystal/cubicArray/setRepeatNumberY  4
+/gate/my_crystal/cubicArray/setRepeatNumberZ  9
+/gate/my_crystal/cubicArray/setRepeatVector   0.0 3.975 5.3155 mm
+
+# PLACE LYSO crystals
+/gate/my_crystal/daughters/name          LYSO
+/gate/my_crystal/daughters/insert        box
+/gate/LYSO/placement/setTranslation      0.0 0.0 0.0 mm
+/gate/LYSO/geometry/setXLength           25.0 mm
+/gate/LYSO/geometry/setYLength           3.95 mm
+/gate/LYSO/geometry/setZLength           5.3 mm
+/gate/LYSO/setMaterial                   LYSO
+/gate/LYSO/vis/setColor                  red
+
+# ATTACH  SYSTEM
+/gate/systems/cylindricalPET/rsector/attach    my_rsector
+/gate/systems/cylindricalPET/module/attach     my_module
+/gate/systems/cylindricalPET/submodule/attach  my_submodule
+/gate/systems/cylindricalPET/crystal/attach    my_crystal
+/gate/systems/cylindricalPET/layer0/attach     LYSO
+
+# ATTACH  LAYER  SD
+/gate/LYSO/attachCrystalSD
+# All interactions occuring inside this volume are recorded and analysed
+
+/gate/systems/cylindricalPET/describe
+
+#############################################################################
+# Attenuating materials between the front face of the crystals and patient bore
+
+# Plastic Polycarbonate cover 0.7 mm thick
+/gate/world/daughters/name              layer1
+/gate/world/daughters/insert            cylinder
+/gate/layer1/setMaterial                Polycarbonate
+/gate/layer1/geometry/setRmax           352.7 mm
+/gate/layer1/geometry/setRmin           352 mm
+/gate/layer1/geometry/setHeight         400. mm
+/gate/layer1/vis/forceSolid
+/gate/layer1/vis/setVisible             1
+/gate/layer1/vis/setColor               white
+
+# Mylar 1.5 mm thick patient scanner window
+/gate/world/daughters/name              layer2
+/gate/world/daughters/insert            cylinder
+/gate/layer2/setMaterial                Mylar
+/gate/layer2/geometry/setRmax           354.2 mm
+/gate/layer2/geometry/setRmin           352.7 mm
+/gate/layer2/geometry/setHeight         400. mm
+/gate/layer2/vis/forceSolid
+/gate/layer2/vis/setVisible             1
+/gate/layer2/vis/setColor               red
+
+# Metalized Mylar 0.1 mm
+/gate/world/daughters/name              layer3
+/gate/world/daughters/insert            cylinder
+/gate/layer3/setMaterial                Mylar
+/gate/layer3/geometry/setRmax           354.3 mm
+/gate/layer3/geometry/setRmin           354.2 mm
+/gate/layer3/geometry/setHeight         400. mm
+/gate/layer3/vis/forceSolid
+/gate/layer3/vis/setVisible             1
+/gate/layer3/vis/setColor               white
+
+# All interactions occuring inside this volume are recorded and analysed
+/gate/layer1/attachPhantomSD
+/gate/layer2/attachPhantomSD
+/gate/layer3/attachPhantomSD
+
+############# Define patient bed ################################################$
+#/gate/world/daughters/name            bed
+#/gate/world/daughters/insert          cylinder
+#/gate/bed/placement/setTranslation    0.00 70.00 0.00 mm
+#/gate/bed/setMaterial                 Plastic
+#/gate/bed/geometry/setRmax            285.00 mm
+#/gate/bed/geometry/setRmin            280.00 mm
+#/gate/bed/geometry/setPhiStart        225 deg
+#/gate/bed/geometry/setDeltaPhi        90 deg
+#/gate/bed/geometry/setHeight          70.00 cm
+#/gate/bed/vis/setColor                gray
+#/gate/bed/vis/forceSolid

@@ -1,0 +1,20 @@
+/gate/source/addSource                 F18
+/gate/source/F18/setActivity           {activity}. MBq
+
+/gate/source/F18/gps/particle          e+
+/gate/source/F18/setForcedUnstableFlag true
+/gate/source/F18/setForcedHalfLife     6586.2 s
+/gate/source/F18/gps/energytype        Fluor18
+/gate/source/F18/gps/type              Volume
+/gate/source/F18/gps/shape             Cylinder
+/gate/source/F18/gps/radius            1.6 mm
+/gate/source/F18/gps/halfz             100.0 cm
+/gate/source/F18/gps/angtype           iso
+/gate/source/F18/gps/centre            0. -45. 0. mm
+#/gate/source/F18/visualize            5000 red 2
+# Do not use attachTO command here
+
+/gate/source/F18/gps/Forbid            scatter_phantom
+/gate/source/F18/dump                  1
+/gate/source/list
+

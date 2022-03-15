@@ -1,0 +1,147 @@
+## Six point sources at: 0, 1, 5, 10, 15, and 20 cm from the center
+## NEMA spatial resolution phantom NU2 2007 for point sources
+## Short glass capillary tubes (of length 1 mm) are phantoms
+
+# For source 0
+/gate/world/daughters/name                  sr_phantom0
+/gate/world/daughters/insert                cylinder
+/gate/sr_phantom0/setMaterial               Glass
+/gate/sr_phantom0/placement/setTranslation  0.0 0.0 0.0 cm
+/gate/sr_phantom0/geometry/setRmax          0.9 mm
+/gate/sr_phantom0/geometry/setRmin          0.5 mm
+/gate/sr_phantom0/geometry/setHeight        1.0 mm
+/gate/sr_phantom0/setMaterial               Glass
+/gate/sr_phantom0/vis/setVisible            1
+/gate/sr_phantom0/vis/forceWireframe
+/gate/sr_phantom0/vis/setColor              red
+
+/gate/sr_phantom0/daughters/name            hole0
+/gate/sr_phantom0/daughters/insert          cylinder
+/gate/hole0/setMaterial                     Water
+/gate/hole0/geometry/setRmax                0.5 mm
+/gate/hole0/geometry/setRmin                0. mm
+/gate/hole0/geometry/setHeight              1.0 mm
+/gate/hole0/placement/setTranslation        0 0 0 mm
+/gate/hole0/vis/setVisible                  1
+/gate/hole0/vis/forceSolid
+/gate/hole0/vis/setColor                    blue
+
+# For source 1
+/gate/world/daughters/name                  sr_phantom1
+/gate/world/daughters/insert                cylinder
+/gate/sr_phantom1/setMaterial               Glass
+/gate/sr_phantom1/placement/setTranslation  0.0 1.0 0.0 cm
+/gate/sr_phantom1/geometry/setRmax          0.9 mm
+/gate/sr_phantom1/geometry/setRmin          0.5 mm
+/gate/sr_phantom1/geometry/setHeight        1.0 mm
+/gate/sr_phantom1/setMaterial               Glass
+/gate/sr_phantom1/vis/setVisible            1
+/gate/sr_phantom1/vis/forceWireframe
+/gate/sr_phantom1/vis/setColor              red
+
+/gate/sr_phantom1/daughters/name            hole1
+/gate/sr_phantom1/daughters/insert          cylinder
+/gate/hole1/setMaterial                     Water
+/gate/hole1/geometry/setRmax                0.5 mm
+/gate/hole1/geometry/setRmin                0. mm
+/gate/hole1/geometry/setHeight              1.0 mm
+/gate/hole1/placement/setTranslation        0 0 0 mm
+/gate/hole1/vis/setVisible                  1
+/gate/hole1/vis/forceSolid
+/gate/hole1/vis/setColor                    blue
+
+# For source 2
+/gate/world/daughters/name                  sr_phantom2
+/gate/world/daughters/insert                cylinder
+/gate/sr_phantom2/setMaterial               Glass
+/gate/sr_phantom2/placement/setTranslation  0.0 5.0 0.0 cm
+/gate/sr_phantom2/geometry/setRmax          0.9 mm
+/gate/sr_phantom2/geometry/setRmin          0.5 mm
+/gate/sr_phantom2/geometry/setHeight        1.0 mm
+/gate/sr_phantom2/setMaterial               Glass
+/gate/sr_phantom2/vis/setVisible            1
+/gate/sr_phantom2/vis/forceWireframe
+/gate/sr_phantom2/vis/setColor              red
+
+/gate/sr_phantom2/daughters/name            hole2
+/gate/sr_phantom2/daughters/insert          cylinder
+/gate/hole2/setMaterial                     Water
+/gate/hole2/geometry/setRmax                0.5 mm
+/gate/hole2/geometry/setRmin                0. mm
+/gate/hole2/geometry/setHeight              1.0 mm
+/gate/hole2/placement/setTranslation        0 0 0 mm
+/gate/hole2/vis/setVisible                  1
+/gate/hole2/vis/forceSolid
+/gate/hole2/vis/setColor                    blue
+
+# For source 3
+/gate/world/daughters/name                  sr_phantom3
+/gate/world/daughters/insert                cylinder
+/gate/sr_phantom3/setMaterial               Glass
+/gate/sr_phantom3/placement/setTranslation  0.0 10.0 0.0 cm
+/gate/sr_phantom3/geometry/setRmax          0.9 mm
+/gate/sr_phantom3/geometry/setRmin          0.5 mm
+/gate/sr_phantom3/geometry/setHeight        1.0 mm
+/gate/sr_phantom3/setMaterial               Glass
+/gate/sr_phantom3/vis/setVisible            1
+/gate/sr_phantom3/vis/forceWireframe
+
+/gate/sr_phantom3/daughters/name            hole3
+/gate/sr_phantom3/daughters/insert          cylinder
+/gate/hole3/setMaterial                     Water
+/gate/hole3/geometry/setRmax                0.5 mm
+/gate/hole3/geometry/setRmin                0. mm
+/gate/hole3/geometry/setHeight              1.0 mm
+/gate/hole3/placement/setTranslation        0 0 0 mm
+/gate/hole3/vis/setVisible                  1
+/gate/hole3/vis/forceSolid
+/gate/hole3/vis/setColor                    blue
+
+# For source 4
+/gate/world/daughters/name                  sr_phantom4
+/gate/world/daughters/insert                cylinder
+/gate/sr_phantom4/setMaterial               Glass
+/gate/sr_phantom4/placement/setTranslation  0.0 15.0 0.0 cm
+/gate/sr_phantom4/geometry/setRmax          0.9 mm
+/gate/sr_phantom4/geometry/setRmin          0.5 mm
+/gate/sr_phantom4/geometry/setHeight        1.0 mm
+/gate/sr_phantom4/setMaterial               Glass
+/gate/sr_phantom4/vis/setVisible            1
+/gate/sr_phantom4/vis/forceWireframe
+/gate/sr_phantom4/vis/setColor              red
+
+/gate/sr_phantom4/daughters/name            hole4
+/gate/sr_phantom4/daughters/insert          cylinder
+/gate/hole4/setMaterial                     Water
+/gate/hole4/geometry/setRmax                0.5 mm
+/gate/hole4/geometry/setRmin                0. mm
+/gate/hole4/geometry/setHeight              1.0 mm
+/gate/hole4/placement/setTranslation        0 0 0 mm
+/gate/hole4/vis/setVisible                  1
+/gate/hole4/vis/forceSolid
+/gate/hole4/vis/setColor                    blue
+
+# For source 5
+/gate/world/daughters/name                  sr_phantom5
+/gate/world/daughters/insert                cylinder
+/gate/sr_phantom5/setMaterial               Glass
+/gate/sr_phantom5/placement/setTranslation  0.0 20.0 0.0 cm
+/gate/sr_phantom5/geometry/setRmax          0.9 mm
+/gate/sr_phantom5/geometry/setRmin          0.5 mm
+/gate/sr_phantom5/geometry/setHeight        1.0 mm
+/gate/sr_phantom5/setMaterial               Glass
+/gate/sr_phantom5/vis/setVisible            1
+/gate/sr_phantom5/vis/forceWireframe
+/gate/sr_phantom5/vis/setColor              red
+
+/gate/sr_phantom5/daughters/name            hole5
+/gate/sr_phantom5/daughters/insert          cylinder
+/gate/hole5/setMaterial                     Water
+/gate/hole5/geometry/setRmax                0.5 mm
+/gate/hole5/geometry/setRmin                0. mm
+/gate/hole5/geometry/setHeight              1.0 mm
+/gate/hole5/placement/setTranslation        0 0 0 mm
+/gate/hole5/vis/setVisible                  1
+/gate/hole5/vis/forceSolid
+/gate/hole5/vis/setColor                    blue
+

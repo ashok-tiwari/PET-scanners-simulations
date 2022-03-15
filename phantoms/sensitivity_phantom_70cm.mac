@@ -1,0 +1,74 @@
+### PET sensitivity phantom - NEMA, polyethylene (0.96 g/cm3) fillable volume
+## inside diameter = 2 mm, length = 700 mm, wall thickness = 0.6 mm
+## Outside diameter = 3.2, Material = Polyethylene 0.96 g/cm3
+
+/gate/world/daughters/name                phantom
+/gate/world/daughters/insert              cylinder
+/gate/phantom/setMaterial                 Polyethylene
+/gate/phantom/placement/setTranslation    0.0 0.0 0.0 mm
+/gate/phantom/geometry/setRmax            1.6 mm
+/gate/phantom/geometry/setRmin            1.0  mm
+/gate/phantom/geometry/setHeight          700 mm
+/gate/phantom/vis/setVisible              1
+
+/gate/phantom/daughters/name               watervolume
+/gate/phantom/daughters/insert             cylinder
+/gate/watervolume/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/watervolume/geometry/setRmax         1.0 mm
+/gate/watervolume/geometry/setRmin         0.0 mm
+/gate/watervolume/geometry/setHeight	   700 mm
+/gate/watervolume/setMaterial              Water
+/gate/watervolume/vis/forceSolid
+/gate/watervolume/vis/setVisible           1
+/gate/watervolume/vis/setColor             blue
+
+# Add Aluminum (2.7 g/cm3) sleeves
+/gate/world/daughters/name                sleeve1
+/gate/world/daughters/insert              cylinder
+/gate/sleeve1/setMaterial                 Aluminium
+/gate/sleeve1/placement/setTranslation    0.0 0.0 0.0 mm
+/gate/sleeve1/geometry/setRmax            3.2 mm
+/gate/sleeve1/geometry/setRmin            1.95 mm
+/gate/sleeve1/geometry/setHeight          700 mm
+/gate/sleeve1/vis/setVisible              1
+
+#/gate/world/daughters/name                sleeve2
+#/gate/world/daughters/insert              cylinder
+#/gate/sleeve2/setMaterial                 Aluminium
+#/gate/sleeve2/placement/setTranslation    0.0 0.0 0.0 mm
+#/gate/sleeve2/geometry/setRmax            4.75 mm
+#/gate/sleeve2/geometry/setRmin            3.5 mm
+#/gate/sleeve2/geometry/setHeight          700 mm
+#/gate/sleeve2/vis/setVisible              1
+
+#/gate/world/daughters/name                sleeve3
+#/gate/world/daughters/insert              cylinder
+#/gate/sleeve3/setMaterial                 Aluminium
+#/gate/sleeve3/placement/setTranslation    0.0 0.0 0.0 mm
+#/gate/sleeve3/geometry/setRmax            6.35 mm
+#/gate/sleeve3/geometry/setRmin            5.1 mm
+#/gate/sleeve3/geometry/setHeight          700 mm
+#/gate/sleeve3/vis/setVisible              1
+
+#/gate/world/daughters/name                sleeve4
+#/gate/world/daughters/insert              cylinder
+#/gate/sleeve4/setMaterial                 Aluminium
+#/gate/sleeve4/placement/setTranslation    0.0 0.0 0.0 mm
+#/gate/sleeve4/geometry/setRmax            7.95 mm
+#/gate/sleeve4/geometry/setRmin            6.7 mm
+#/gate/sleeve4/geometry/setHeight          700 mm
+#/gate/sleeve4/vis/setVisible              1
+
+#/gate/world/daughters/name                sleeve5
+#/gate/world/daughters/insert              cylinder
+#/gate/sleeve5/setMaterial                 Aluminium
+#/gate/sleeve5/placement/setTranslation    0.0 0.0 0.0 mm
+#/gate/sleeve5/geometry/setRmax            9.55 mm
+#/gate/sleeve5/geometry/setRmin            8.3 mm
+#/gate/sleeve5/geometry/setHeight          700 mm
+#/gate/sleeve5/vis/setVisible              1
+
+## phantomSD are scattering volumes in the geometry
+/gate/phantom/attachPhantomSD
+/gate/watervolume/attachPhantomSD
+

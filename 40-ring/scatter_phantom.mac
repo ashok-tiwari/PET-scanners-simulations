@@ -1,0 +1,56 @@
+## NEMA scatter and count rate  phantom NU2 2007
+## Polyethylene is the phantom material
+## Phantom is cylinder of 20.3 cm diameter, 200 cm long and has line source insert
+
+/gate/world/daughters/name		        scatter_phantom
+/gate/world/daughters/insert		        cylinder
+/gate/scatter_phantom/setMaterial		Polyethylene
+/gate/scatter_phantom/placement/setTranslation  0.0 0.0 0.0 cm
+/gate/scatter_phantom/geometry/setRmax          10.15 cm
+/gate/scatter_phantom/geometry/setRmin          0.  cm
+/gate/scatter_phantom/geometry/setHeight        200.0 cm
+/gate/scatter_phantom/vis/setVisible            1
+/gate/scatter_phantom/vis/forceWireframe
+/gate/scatter_phantom/vis/setColor              red
+
+# Daughter of phantom, hole inside the scatter phantom
+/gate/scatter_phantom/daughters/name           hole
+/gate/scatter_phantom/daughters/insert         cylinder
+/gate/hole/setMaterial                         Air
+/gate/hole/geometry/setRmax                    3.2 mm
+/gate/hole/geometry/setRmin                    0. mm
+/gate/hole/geometry/setHeight                  200.0 cm
+/gate/hole/placement/setTranslation            0.0 -45.0 0.0 mm
+/gate/hole/vis/setVisible                      1
+/gate/hole/vis/forceWireframe
+/gate/hole/vis/setColor                        blue
+
+# FOR LINE SOURCE TUBE INSIDE AIR HOLE
+/gate/hole/daughters/name                        sourceinsert_tube
+/gate/hole/daughters/insert                      cylinder
+/gate/sourceinsert_tube/setMaterial              Polyethylene
+/gate/sourceinsert_tube/geometry/setRmin         1.6 mm
+/gate/sourceinsert_tube/geometry/setRmax         2.4 mm
+/gate/sourceinsert_tube/geometry/setHeight       200.0 cm
+/gate/sourceinsert_tube/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/sourceinsert_tube/vis/setVisible           1
+/gate/sourceinsert_tube/vis/forceWireframe
+/gate/sourceinsert_tube/vis/setColor             white
+
+# LINE SOURCE VOLUME - diluting with water volume
+/gate/sourceinsert_tube/daughters/name          linesourcevolume
+/gate/sourceinsert_tube/daughters/insert        cylinder
+/gate/linesourcevolume/setMaterial              Water
+/gate/linesourcevolume/geometry/setRmax         1.6 mm
+/gate/linesourcevolume/geometry/setRmin         0.0 mm
+/gate/linesourcevolume/geometry/setHeight       200.0 cm
+/gate/linesourcevolume/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/linesourcevolume/vis/setVisible           0
+/gate/linesourcevolume/vis/forceSolid 
+/gate/linesourcevolume/vis/setColor             white
+
+## phantomSD are scattering volumes in the geometry
+/gate/scatter_phantom/attachPhantomSD
+/gate/hole/attachPhantomSD
+/gate/sourceinsert_tube/attachPhantomSD
+/gate/linesourcevolume/attachPhantomSD

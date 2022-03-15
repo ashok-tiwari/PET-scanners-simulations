@@ -1,0 +1,60 @@
+#--------------------------------------------------------------------------------------#
+#  Digitizer settings                                                                  #
+#--------------------------------------------------------------------------------------#
+
+# Sum all pulses
+/gate/digitizer/Singles/insert					adder
+/gate/digitizer/Singles/insert					readout
+/gate/digitizer/Singles/readout/setDepth			2
+
+# Gaussian blurring of energy spectrum
+/gate/digitizer/Singles/insert					blurring
+/gate/digitizer/Singles/blurring/setResolution			0.12
+/gate/digitizer/Singles/blurring/setEnergyOfReference		511 keV
+
+# Coincidence resolving time - temporal resolution
+/gate/digitizer/Singles/insert					timeResolution
+/gate/digitizer/Singles/timeResolution/setTimeResolution	375 ps
+
+# Deadtime is applied on the Singles before the coincidence sorting
+/gate/digitizer/Singles/insert					deadtime
+/gate/digitizer/Singles/deadtime/setDeadTime			200. ns
+/gate/digitizer/Singles/deadtime/setMode			nonparalysable
+/gate/digitizer/Singles/deadtime/chooseDTVolume			my_module
+
+# Energy window
+/gate/digitizer/Singles/insert					thresholder
+/gate/digitizer/Singles/thresholder/setThreshold		425 keV
+/gate/digitizer/Singles/insert					upholder
+/gate/digitizer/Singles/upholder/setUphold			650 keV
+/gate/digitizer/Singles/describe
+
+# Coincdence Sorter
+/gate/digitizer/Coincidences/setWindow				2.45 ns
+/gate/digitizer/Coincidences/minSectorDifference		3
+/gate/digitizer/Coincidences/MultiplesPolicy			takeAllGoods
+/gate/digitizer/Coincidences/describe
+
+/gate/digitizer/name						delay
+/gate/digitizer/insert						coincidenceSorter
+/gate/digitizer/delay/setWindow					2.45 ns
+/gate/digitizer/delay/setOffset					500. ns
+/gate/digitizer/delay/MultiplesPolicy				takeAllGoods
+/gate/digitizer/delay/describe
+
+# Add paralysable deadtime
+#/gate/digitizer/name						finalCoincidences
+#/gate/digitizer/insert						coincidenceChain
+#/gate/digitizer/finalCoincidences/addInputName			Coincidences
+#/gate/digitizer/finalCoincidences/insert			deadtime
+#/gate/digitizer/finalCoincidences/deadtime/setDeadTime		50. ns
+#/gate/digitizer/finalCoincidences/deadtime/setMode		paralysable
+
+# Final delay 
+#/gate/digitizer/name						finaldelay
+#/gate/digitizer/insert						coincidenceChain
+#/gate/digitizer/finaldelay/addInputName			delay
+#/gate/digitizer/finaldelay/insert				deadtime
+#/gate/digitizer/finaldelay/deadtime/setDeadTime		50. ns
+#/gate/digitizer/finaldelay/deadtime/setMode			paralysable
+

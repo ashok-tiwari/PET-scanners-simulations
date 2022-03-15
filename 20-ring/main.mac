@@ -1,0 +1,101 @@
+## Simulation of Scatter phantom using DMI 20-ring scanner geometry
+## Aliases are used in the code
+## Written by: Ashok Tiwari, PET Center, University of Iowa Hospitals
+
+#--------------------------------------------------------------------------------------#
+#   Materials Database                                                                 #
+#--------------------------------------------------------------------------------------#
+/vis/disable
+
+/gate/geometry/setMaterialDatabase  /Users/atiwr/gate8.1/gate_v8.1.p01/GateMaterials.db
+
+#--------------------------------------------------------------------------------------#
+#  World  volume                                                                       #
+#--------------------------------------------------------------------------------------#
+/gate/world/geometry/setXLength          300. cm
+/gate/world/geometry/setYLength          300. cm
+/gate/world/geometry/setZLength          300. cm
+
+#--------------------------------------------------------------------------------------#
+#  Scanner geometry 20-ring                                                            #
+#--------------------------------------------------------------------------------------#
+/control/execute scanner_geometry.mac
+
+#--------------------------------------------------------------------------------------#
+#  Phantom                                                                             #
+#--------------------------------------------------------------------------------------#
+/control/execute scatter_phantom.mac
+
+#--------------------------------------------------------------------------------------#
+#  Save simulation statistics                                                          #
+#--------------------------------------------------------------------------------------#
+/gate/actor/addActor                    SimulationStatisticActor stat
+/gate/actor/stat/save                   output/stat_{activity}_MBq.txt
+/gate/actor/stat/saveEveryNSeconds      60
+
+#--------------------------------------------------------------------------------------#
+#  Set Physics list                                                                    #
+#--------------------------------------------------------------------------------------#
+/control/execute  physics.mac
+
+/gate/run/initialize
+
+#--------------------------------------------------------------------------------------#
+#  Digitize signals                                                                    #
+#--------------------------------------------------------------------------------------#
+/control/execute  digitizer.mac
+
+#--------------------------------------------------------------------------------------#
+#  Source settings                                                                     #
+#--------------------------------------------------------------------------------------#
+/control/execute source_particle.mac
+
+
+#--------------------------------------------------------------------------------------#
+#  Verbosity                                                                           #
+#--------------------------------------------------------------------------------------#
+/control/execute verbose.mac
+
+
+#--------------------------------------------------------------------------------------#
+#  ROOT output                                                                         #
+#--------------------------------------------------------------------------------------#
+/gate/output/root/enable
+/gate/output/root/setFileName           output/scat_{activity}_MBq
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesAdderFlag 0
+/gate/output/root/setRootSinglesReadoutFlag 0
+/gate/output/root/setRootSinglesFlag 0
+/gate/output/root/setRootCoincidencesFlag 1
+#/gate/output/root/setRootdelayFlag 1
+/gate/output/root/setRootNtupleFlag 0
+
+#--------------------------------------------------------------------------------------#
+#  Visualization                                                                       #
+#--------------------------------------------------------------------------------------#
+#/control/execute visu.mac
+
+#--------------------------------------------------------------------------------------#
+#  Random Number Generator                                                             #
+#--------------------------------------------------------------------------------------#
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+/gate/random/verbose 1
+
+#--------------------------------------------------------------------------------------#
+#  Start simulation                                                                    #
+#--------------------------------------------------------------------------------------#
+#/gate/application/setTotalNumberOfPrimaries 20
+#/gate/application/start
+
+/gate/application/setTimeSlice  1 s
+/gate/application/setTimeStart  0. s
+/gate/application/setTimeStop   1 s
+/gate/application/startDAQ
+exit
+
+#--------------------------------------------------------------------------------------#
+#  End simulation                                                                      #
+#--------------------------------------------------------------------------------------#
+
+

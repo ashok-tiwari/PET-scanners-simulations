@@ -1,0 +1,33 @@
+#--------------------------------------------------------------------------------------#
+#   Intrinsic activity present in LYSO crystals                                        #
+#--------------------------------------------------------------------------------------#
+
+# Make the source large enough to cover the entire scanner
+# Use confine command to confine the activity to crystal only
+/gate/source/addSource               176Lu
+/gate/source/176Lu/gps/particle      ion
+/gate/source/176Lu/gps/ion           71 176 0 0
+/gate/source/176Lu/gps/monoenergy    0. keV
+/gate/source/176Lu/gps/angtype       iso
+/gate/source/176Lu/gps/type          Volume
+/gate/source/176Lu/gps/shape         Cylinder
+/gate/source/176Lu/gps/radius        40 cm   ### bore diameter 70 cm, so 80 cm covers entire scanner
+/gate/source/176Lu/gps/halfz         11 cm   ### AFOV is 20 cm, so 22 cm covers entire scanner
+/gate/source/176Lu/setActivity       140.60 Bq
+
+# Activity concentration of 268.85 Bq/ml was used to calculate the activity of 140.60 Bq (see below)
+# 268.85 Bq/ml x 0.523 (crystal volume) = 140.60 Bq
+# Calculation:
+# Formula: LYSO (Lu_1.8 Y_0.2 Si O_5):Ce
+# Total Molar mass = 455 (174.96x.18 + 0.2x88.90 + 28.08 + 19.99x5)
+# Density of LYSO = 7.11 gm/cm3
+# Half life = 3.6x10^10 years
+# Avogadro's number = 6.023x10^23
+
+# Activity concentration = ((1.8x7.11x6.023x10^23)/455)*2.6%*(0.693/3.6x19^10x365x24x3600) = 268.85 Bq/ml
+
+/gate/source/176Lu/gps/confine       LYSO_phys
+
+#/gate/source/[Source name]/visualize count(0-10000), color, size (screen size in pixels: 0 - 20)
+/gate/source/176Lu/visualize         100 yellow 5
+

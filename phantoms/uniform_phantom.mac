@@ -1,0 +1,27 @@
+## Uniform cylindrical phantom (cylinder with wall thickness of 3 mm)
+## 20 cm int diam + 3 mm*2 wall thickness
+
+/gate/world/daughters/name              phantom
+/gate/world/daughters/insert            cylinder
+/gate/phantom/setMaterial               PMMA
+/gate/phantom/placement/setTranslation  0.0 0.0 0.0 mm
+/gate/phantom/geometry/setRmax          103.00 mm
+/gate/phantom/geometry/setRmin          100.00 mm
+/gate/phantom/geometry/setHeight        180.00 mm
+/gate/phantom/vis/setVisible            1
+
+/gate/world/daughters/name                 watervolume
+/gate/world/daughters/insert               cylinder
+/gate/watervolume/placement/setTranslation 0.0 0.0 0.0 mm
+/gate/watervolume/geometry/setRmax         100.00 mm
+/gate/watervolume/geometry/setRmin         0.00 mm
+/gate/watervolume/geometry/setHeight	   180.00 mm
+/gate/watervolume/setMaterial              Water
+/gate/watervolume/vis/forceSolid
+/gate/watervolume/vis/setVisible           1
+/gate/watervolume/vis/setColor             blue
+
+## phantomSD are scattering volumes in the geometry
+/gate/phantom/attachPhantomSD
+/gate/watervolume/attachPhantomSD
+

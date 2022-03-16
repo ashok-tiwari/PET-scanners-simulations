@@ -1,4 +1,6 @@
 ## PET scanners simulations
+This is a part of a Ph.D. thesis of Ashok Tiwari. See details in the Chapter 7 of the thesis.
+
 The Discovery MI 4-ring PET scanner front-end architecture was simulated and validated with the NEMA measurements data. Subsequntly, more scanner rings were added to simulate the performance measurements of the long axial field of view scanners up to 2 meter.
 
 This repsitory consists of all scanners GATE simulation scripts and NEMA phantom scripts including the data analysis tools that were developed to analyze the simulated data.

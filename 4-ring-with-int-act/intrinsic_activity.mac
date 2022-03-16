@@ -19,7 +19,7 @@
 # 268.85 Bq/ml x 0.523 (crystal volume) = 140.60 Bq
 # Calculation:
 # Formula: LYSO (Lu_1.8 Y_0.2 Si O_5):Ce
-# Total Molar mass = 455 (174.96x.18 + 0.2x88.90 + 28.08 + 19.99x5)
+# Total Molar mass = 455 (174.96x1.8 + 0.2x88.90 + 28.08 + 19.99x5)
 # Density of LYSO = 7.11 gm/cm3
 # Half life = 3.6x10^10 years
 # Avogadro's number = 6.023x10^23

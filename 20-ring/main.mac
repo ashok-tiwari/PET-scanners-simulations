@@ -2,11 +2,11 @@
 ## Aliases are used in the code
 ## Written by: Ashok Tiwari, PET Center, University of Iowa Hospitals
 
+/vis/disable
+
 #--------------------------------------------------------------------------------------#
 #   Materials Database                                                                 #
 #--------------------------------------------------------------------------------------#
-/vis/disable
-
 /gate/geometry/setMaterialDatabase  /Users/atiwr/gate8.1/gate_v8.1.p01/GateMaterials.db
 
 #--------------------------------------------------------------------------------------#
